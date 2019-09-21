@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "singleton.h"
+#include "singleton/singleton.h"
 #include "observer/concrete_subject.h"
 #include "observer/concrete_observer.h"
 #include "decorator.h"
