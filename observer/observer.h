@@ -11,16 +11,12 @@ class Subject;
 
 class Observer{
 protected:
-    Observer();
+    Observer() = default;
 
 public:
-    virtual ~Observer();
+    virtual ~Observer() = default;
     virtual void update(Subject *the_changed_subject) = 0;
 
 };
-
-Observer::Observer() {}
-
-Observer::~Observer() {}
 
 #endif //DESIGN_PATTERNS_OBSERVER_H

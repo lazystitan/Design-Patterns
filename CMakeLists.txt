@@ -19,5 +19,8 @@ add_executable(design_patterns
 
     # 装饰器模式
         decorator.h
+
+    #代理模式
+        proxy.h
         )
 

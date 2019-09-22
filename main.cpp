@@ -4,6 +4,7 @@
 #include "observer/concrete_subject.h"
 #include "observer/concrete_observer.h"
 #include "decorator.h"
+#include "proxy.h"
 
 void test1() {
     Singleton *s1 = Singleton::Instance();
@@ -41,9 +42,15 @@ void test3() {
 
 }
 
+void test4() {
+    ImagePtr imagePtr = ImagePtr(12345);
+    imagePtr->draw();
+}
+
 int main() {
 //    test1();
 //    test2();
-    test3();
+//    test3();
+    test4();
     return 0;
 }
