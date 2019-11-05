@@ -8,10 +8,9 @@ add_executable(design_patterns
         main.cpp
 
     #单例模式
-        singleton/singleton.h
-        singleton/singleton.cpp
+        singleton.h
 
-    #观察模式
+        #观察模式
         observer/subject.h
         observer/observer.h
         observer/concrete_subject.h
@@ -22,5 +21,7 @@ add_executable(design_patterns
 
     #代理模式
         proxy.h
-        )
+
+    #抽象工厂
+        abstract_factory.h)
 

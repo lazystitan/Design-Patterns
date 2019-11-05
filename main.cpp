@@ -1,10 +1,11 @@
 #include <iostream>
 #include <vector>
-#include "singleton/singleton.h"
+#include "singleton.h"
 #include "observer/concrete_subject.h"
 #include "observer/concrete_observer.h"
 #include "decorator.h"
 #include "proxy.h"
+#include "abstract_factory.h"
 
 void test1() {
     Singleton *s1 = Singleton::Instance();
@@ -45,6 +46,14 @@ void test3() {
 void test4() {
     ImagePtr imagePtr = ImagePtr(12345);
     imagePtr->draw();
+}
+
+void test_abstract_factory() {
+    auto factory_a = ConcreteFactoryA();
+    auto products_1 = ProductsCreator::CreateProducts(&factory_a);
+
+    auto factory_b = ConcreteFactoryB();
+    auto products_2 = ProductsCreator::CreateProducts(&factory_b);
 }
 
 int main() {
