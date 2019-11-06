@@ -23,5 +23,10 @@ add_executable(design_patterns
         proxy.h
 
     #抽象工厂
-        abstract_factory.h)
+        abstract_factory.h
+
+    #生成器
+        builder.h
+
+        )
 

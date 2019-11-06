@@ -76,6 +76,11 @@ public:
     void add(AbstractProduct *m) {
         _v.push_back(m);
     }
+
+    void action() {
+        for (auto &p : _v)
+            p->action();
+    }
 };
 
 /*
@@ -130,9 +135,9 @@ public:
 
 /*
  * 生成Products的类，包含一个创建Products的类。
- * 因为该成员函数的参数为一个工厂，根据要求可以创建不同的product，于此同时，它们之间的关系定义可以被复用
+ * 因为该成员函数的参数为一个工厂，根据要求可以创建不同的product，于此同时，它们之间的关系定义可以被复用。
  */
-class ProductsCreator{
+class ProductsCreatorAF{
 public:
     static Products * CreateProducts(AbstractFactory * f) {
         auto products = f->MakeField();
