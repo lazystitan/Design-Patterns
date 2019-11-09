@@ -13,6 +13,9 @@
 void test_singleton() {
     Singleton *s1 = Singleton::Instance();
     Singleton *s2 = Singleton::Instance();
+
+    auto *ss1 = (SingletonSuccessor*) SingletonSuccessor::Instance();
+    ss1->Action();
 }
 
 void test_observer() {
