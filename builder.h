@@ -11,14 +11,17 @@
  * AbstractProduct
  *       |
  *       +-----+-------------------+----------------------+
- *            |                    |                      |
+ *             |                   |                      |
  *      ConcreteProductA    ConcreteProductB      ConcreteProductC
  *            |
  *  EnhancedConcreteProductA
  */
 
-//class ConcreteProductA;
-//class Products;
+/*
+ * Builder和Abstract的区别？
+ */
+
+
 
 class AbstractBuilder {
 protected:

@@ -28,5 +28,6 @@ add_executable(design_patterns
     #生成器
         builder.h
 
-        )
+    #工厂方法
+        factory_method.h)
 

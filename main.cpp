@@ -7,6 +7,7 @@
 #include "proxy.h"
 #include "abstract_factory.h"
 #include "builder.h"
+#include "factory_method.h"
 
 void test_singleton() {
     Singleton *s1 = Singleton::Instance();
@@ -65,7 +66,17 @@ void test_builder() {
 
     ProductsCreatorB::CreateProducts(cb);
     p = cb.GetProducts();
+}
 
+void test_factory_method() {
+    ConcreteProductB *p;
+    ConcreteCreator c = ConcreteCreator();
+    p = (ConcreteProductB*) c.GetProduct();
+    p->action();
+
+    auto ct = ConcreteTemplateCreator<ConcreteProductC>();
+    auto *pc = (ConcreteProductC*) ct.CreateProduct();
+    pc->action();
 }
 
 int main() {
@@ -75,5 +86,6 @@ int main() {
     test_decorator();
     test_abstract_factory();
     test_builder();
+    test_factory_method();
     return 0;
 }
