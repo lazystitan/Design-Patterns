@@ -8,26 +8,29 @@ add_executable(design_patterns
         main.cpp
 
     #单例模式
-        singleton.h
+        creational_pattern/singleton.h
 
         #观察模式
-        observer/subject.h
-        observer/observer.h
-        observer/concrete_subject.h
-        observer/concrete_observer.h
+        behavioral_pattern/observer/subject.h
+        behavioral_pattern/observer/observer.h
+        behavioral_pattern/observer/concrete_subject.h
+        behavioral_pattern/observer/concrete_observer.h
 
     # 装饰器模式
-        decorator.h
+        structural_pattern/decorator.h
 
     #代理模式
-        proxy.h
+        structural_pattern/proxy.h
 
     #抽象工厂
-        abstract_factory.h
+        creational_pattern/abstract_factory.h
 
     #生成器
-        builder.h
+        creational_pattern/builder.h
 
     #工厂方法
-        factory_method.h prototype.h)
+        creational_pattern/factory_method.h
+
+    #原型方法
+        creational_pattern/prototype.h)
 

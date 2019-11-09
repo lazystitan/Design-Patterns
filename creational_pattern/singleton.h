@@ -14,15 +14,10 @@ protected:
     Singleton() {
         std::cout << "Singleton" << std::endl;
     }
-
-    virtual Singleton* CreateSingleton() {
-        return new Singleton();
-    }
 public:
     static Singleton* Instance() {
         if (_instance == nullptr) {
-            auto s = Singleton();
-            _instance = s.CreateSingleton();
+            _instance = new Singleton();
         }
         return _instance;
     }
@@ -34,16 +29,8 @@ public:
 
 Singleton* Singleton::_instance = nullptr;
 
-class SingletonSuccessor : public Singleton {
-protected:
-    Singleton* CreateSingleton() override {
-        return new SingletonSuccessor();
-    }
 
-public:
-    void Action() override {
-        std::cout << "SingletonSuccessor here" << std::endl;
-    }
-};
+//try using template implement singleton
+//TODO
 
 #endif //DESIGN_PATTERNS_SINGLETON_H

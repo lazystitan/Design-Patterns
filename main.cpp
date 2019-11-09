@@ -1,21 +1,18 @@
 #include <iostream>
 #include <vector>
-#include "singleton.h"
-#include "observer/concrete_subject.h"
-#include "observer/concrete_observer.h"
-#include "decorator.h"
-#include "proxy.h"
-#include "abstract_factory.h"
-#include "builder.h"
-#include "factory_method.h"
-#include "prototype.h"
+#include "creational_pattern/singleton.h"
+#include "behavioral_pattern/observer/concrete_subject.h"
+#include "behavioral_pattern/observer/concrete_observer.h"
+#include "structural_pattern/decorator.h"
+#include "structural_pattern/proxy.h"
+#include "creational_pattern/abstract_factory.h"
+#include "creational_pattern/builder.h"
+#include "creational_pattern/factory_method.h"
+#include "creational_pattern/prototype.h"
 
 void test_singleton() {
     Singleton *s1 = Singleton::Instance();
     Singleton *s2 = Singleton::Instance();
-
-    auto *ss1 = (SingletonSuccessor*) SingletonSuccessor::Instance();
-    ss1->Action();
 }
 
 void test_observer() {
