@@ -8,6 +8,7 @@
 #include "abstract_factory.h"
 #include "builder.h"
 #include "factory_method.h"
+#include "prototype.h"
 
 void test_singleton() {
     Singleton *s1 = Singleton::Instance();
@@ -71,12 +72,27 @@ void test_builder() {
 void test_factory_method() {
     ConcreteProductB *p;
     ConcreteCreator c = ConcreteCreator();
+//    p = dynamic_cast<ConcreteProductB*>(c.GetProduct());
     p = (ConcreteProductB*) c.GetProduct();
     p->action();
 
     auto ct = ConcreteTemplateCreator<ConcreteProductC>();
+//    auto *pc = dynamic_cast<ConcreteProductC*>(ct.CreateProduct());
     auto *pc = (ConcreteProductC*) ct.CreateProduct();
     pc->action();
+}
+
+void test_prototype() {
+    ConcretePrototypeA p = ConcretePrototypeA();
+    p.SetS("123");
+    ConcretePrototypeA *p1 = p.Clone();
+    const std::string& s = p1->GetS();
+    std::cout << "if p : " << p.GetS() << " equals p1 : " << s << " ?" << std::endl;
+//    std::cout << &p.GetS() << std::endl;
+//    std::cout << &(p1->GetS()) << std::endl;
+    std::cout << std::hex << (long unsigned) p.GetAdress() << std::endl;
+    std::cout << (long unsigned) p1->GetAdress() << std::endl;
+
 }
 
 int main() {
@@ -87,5 +103,6 @@ int main() {
     test_abstract_factory();
     test_builder();
     test_factory_method();
+    test_prototype();
     return 0;
 }

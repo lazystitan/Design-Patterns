@@ -29,5 +29,5 @@ add_executable(design_patterns
         builder.h
 
     #工厂方法
-        factory_method.h)
+        factory_method.h prototype.h)
 
