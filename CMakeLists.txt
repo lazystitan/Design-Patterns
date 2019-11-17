@@ -10,11 +10,12 @@ add_executable(design_patterns
     #单例模式
         creational_pattern/singleton.h
 
-        #观察模式
+    #观察模式
         behavioral_pattern/observer/subject.h
         behavioral_pattern/observer/observer.h
         behavioral_pattern/observer/concrete_subject.h
         behavioral_pattern/observer/concrete_observer.h
+        behavioral_pattern/observer.h
 
     # 装饰器模式
         structural_pattern/decorator.h
@@ -32,5 +33,5 @@ add_executable(design_patterns
         creational_pattern/factory_method.h
 
     #原型方法
-        creational_pattern/prototype.h)
+        creational_pattern/prototype.h behavioral_pattern/observer.h structural_pattern/adapter.h behavioral_pattern/observer/subject.cpp)
 

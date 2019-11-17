@@ -1,14 +1,18 @@
 #include <iostream>
 #include <vector>
+
 #include "creational_pattern/singleton.h"
-#include "behavioral_pattern/observer/concrete_subject.h"
-#include "behavioral_pattern/observer/concrete_observer.h"
-#include "structural_pattern/decorator.h"
-#include "structural_pattern/proxy.h"
 #include "creational_pattern/abstract_factory.h"
 #include "creational_pattern/builder.h"
 #include "creational_pattern/factory_method.h"
 #include "creational_pattern/prototype.h"
+
+#include "structural_pattern/decorator.h"
+#include "structural_pattern/proxy.h"
+
+#include "behavioral_pattern/observer.h"
+#include "structural_pattern/adapter.h"
+
 
 void test_singleton() {
     Singleton *s1 = Singleton::Instance();
@@ -95,6 +99,24 @@ void test_prototype() {
 
 }
 
+void test_adapter() {
+    {
+        using namespace ClassAdapter;
+        Adapter a;
+        a.setData(15,2);
+        int rs = a.getSumData(3);
+        std::cout << rs << std::endl;
+    }
+    {
+        using namespace ObjectAdapter;
+        Adaptee a;
+        Adapter at = Adapter(&a);
+        at.setData(15,37);
+        int rs = at.getSumData(3);
+        std::cout << rs << std::endl;
+    }
+}
+
 int main() {
     test_singleton();
     test_observer();
@@ -104,5 +126,6 @@ int main() {
     test_builder();
     test_factory_method();
     test_prototype();
+    test_adapter();
     return 0;
 }
