@@ -5,111 +5,121 @@
 #ifndef DESIGN_PATTERNS_DECORATOR_H
 #define DESIGN_PATTERNS_DECORATOR_H
 
+namespace decorator {
+
 #include <iostream>
 
-class VisualComponent {
-public:
-    VisualComponent() = default;
-    virtual void draw() = 0;
-    virtual void resize() = 0;
-};
+    class VisualComponent {
+    public:
+        VisualComponent() = default;
 
-class TextView : public VisualComponent {
-private:
-    std::string text;
-public:
-    explicit TextView(std::string &&str) {
-        text = str;
-    }
+        virtual void draw() = 0;
 
-    void draw() override {
-        std::cout << "text view draw " << text << std::endl;
-    }
+        virtual void resize() = 0;
+    };
 
-    void resize() override {
-        std::cout << "text view resize " << std::endl;
-    }
-};
+    class TextView : public VisualComponent {
+    private:
+        std::string text;
+    public:
+        explicit TextView(std::string &&str) {
+            text = str;
+        }
 
-class Window {
-public:
-    void set_contents(VisualComponent *contents) {
-        std::cout << "window set contents" << std::endl;
-        contents->draw();
-        contents->resize();
-    }
-};
+        void draw() override {
+            std::cout << "text view draw " << text << std::endl;
+        }
 
-class Decorator : public VisualComponent {
-private:
-    VisualComponent *_component;
-public:
-    explicit Decorator(VisualComponent * component) {
-        _component = component;
-    }
+        void resize() override {
+            std::cout << "text view resize " << std::endl;
+        }
+    };
+
+    class Window {
+    public:
+        void set_contents(VisualComponent *contents) {
+            std::cout << "window set contents" << std::endl;
+            contents->draw();
+            contents->resize();
+        }
+    };
+
+    class Decorator : public VisualComponent {
+    private:
+        VisualComponent *_component;
+    public:
+        explicit Decorator(VisualComponent *component) {
+            _component = component;
+        }
 
 
-    void draw() override {
-        _component->draw();
-    }
+        void draw() override {
+            _component->draw();
+        }
 
-    void resize() override {
-        _component->resize();
-    }
-};
+        void resize() override {
+            _component->resize();
+        }
+    };
 
-class BorderDecorator : public Decorator {
-private:
-    int _width;
-    void draw_boder() {
-        std::cout << "border decorator draw "<< _width << " border" << std::endl;
-    }
+    class BorderDecorator : public Decorator {
+    private:
+        int _width;
 
-public:
-    BorderDecorator(VisualComponent *visualComponent, int border_width) : Decorator(visualComponent) {
-        _width = border_width;
-    }
+        void draw_boder() {
+            std::cout << "border decorator draw " << _width << " border" << std::endl;
+        }
 
-    void draw() override {
-        Decorator::draw();
-        draw_boder();
-    }
-};
+    public:
+        BorderDecorator(VisualComponent *visualComponent, int border_width) : Decorator(visualComponent) {
+            _width = border_width;
+        }
 
-class ScrollDecorator : public Decorator {
-private:
-    int _direction;
-    int _width;
-    void draw_scroll() {
-        std::cout << "scroll decorator draw " << _width << " scroll on " << _direction << std::endl;
-    }
+        void draw() override {
+            Decorator::draw();
+            draw_boder();
+        }
+    };
 
-public:
-    ScrollDecorator(VisualComponent *visualComponent, int width, int direction) : Decorator(visualComponent) {
-        _width = width;
-        _direction = direction;
-    }
-    void draw() override {
-        Decorator::draw();
-        draw_scroll();
-    }
-};
+    class ScrollDecorator : public Decorator {
+    private:
+        int _direction;
+        int _width;
 
-class DropShadowDecorator : public Decorator {
-private:
-    int _width;
-    void draw_shadow() {
-        std::cout << "drop shadow decorator draw " << _width << " shadow"<< std::endl;
-    }
+        void draw_scroll() {
+            std::cout << "scroll decorator draw " << _width << " scroll on " << _direction << std::endl;
+        }
 
-public:
-    DropShadowDecorator(VisualComponent *visualComponent, int width) : Decorator(visualComponent) {
-        _width = width;
-    }
-    void draw() override {
-        Decorator::draw();
-        draw_shadow();
-    }
-};
+    public:
+        ScrollDecorator(VisualComponent *visualComponent, int width, int direction) : Decorator(visualComponent) {
+            _width = width;
+            _direction = direction;
+        }
+
+        void draw() override {
+            Decorator::draw();
+            draw_scroll();
+        }
+    };
+
+    class DropShadowDecorator : public Decorator {
+    private:
+        int _width;
+
+        void draw_shadow() {
+            std::cout << "drop shadow decorator draw " << _width << " shadow" << std::endl;
+        }
+
+    public:
+        DropShadowDecorator(VisualComponent *visualComponent, int width) : Decorator(visualComponent) {
+            _width = width;
+        }
+
+        void draw() override {
+            Decorator::draw();
+            draw_shadow();
+        }
+    };
+}
 
 #endif //DESIGN_PATTERNS_DECORATOR_H

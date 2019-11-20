@@ -7,6 +7,12 @@
 
 #include <iostream>
 
+/*
+ * virtual proxy for saving resource
+ * also have protection proxy and smart reference
+ */
+
+
 class Image {
 private:
     int id;

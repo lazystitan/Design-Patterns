@@ -33,5 +33,5 @@ add_executable(design_patterns
         creational_pattern/factory_method.h
 
     #原型方法
-        creational_pattern/prototype.h behavioral_pattern/observer.h structural_pattern/adapter.h behavioral_pattern/observer/subject.cpp)
+        creational_pattern/prototype.h behavioral_pattern/observer.h structural_pattern/adapter.h behavioral_pattern/observer/subject.cpp structural_pattern/bridge.h)
 

@@ -12,6 +12,7 @@
 
 #include "behavioral_pattern/observer.h"
 #include "structural_pattern/adapter.h"
+#include "structural_pattern/bridge.h"
 
 
 void test_singleton() {
@@ -39,6 +40,7 @@ void test_observer() {
 }
 
 void test_decorator() {
+    using namespace decorator;
     std::string str = "12345";
     auto *window = new Window;
     auto *text_view = new TextView(std::move(str));
@@ -117,6 +119,13 @@ void test_adapter() {
     }
 }
 
+void test_bridge() {
+    using namespace bridge;
+    auto w = Window(PM);
+    w.DrawRect();
+    w.DrawText();
+}
+
 int main() {
     test_singleton();
     test_observer();
@@ -127,5 +136,6 @@ int main() {
     test_factory_method();
     test_prototype();
     test_adapter();
+    test_bridge();
     return 0;
 }
