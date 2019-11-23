@@ -13,6 +13,7 @@ add_executable(design_patterns
     #观察模式
         behavioral_pattern/observer/subject.h
         behavioral_pattern/observer/observer.h
+        behavioral_pattern/observer/subject.cpp
         behavioral_pattern/observer/concrete_subject.h
         behavioral_pattern/observer/concrete_observer.h
         behavioral_pattern/observer.h
@@ -33,5 +34,16 @@ add_executable(design_patterns
         creational_pattern/factory_method.h
 
     #原型方法
-        creational_pattern/prototype.h behavioral_pattern/observer.h structural_pattern/adapter.h behavioral_pattern/observer/subject.cpp structural_pattern/bridge.h)
+        creational_pattern/prototype.h
+
+    #适配器模式
+        structural_pattern/adapter.h
+
+    #桥接模式
+        structural_pattern/bridge.h
+
+    #命令模式
+        behavioral_pattern/command.h
+
+        behavioral_pattern/mediator.h)
 

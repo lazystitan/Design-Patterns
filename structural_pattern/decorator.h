@@ -7,7 +7,7 @@
 
 namespace decorator {
 
-#include <iostream>
+    #include <iostream>
 
     class VisualComponent {
     public:

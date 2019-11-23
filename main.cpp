@@ -13,6 +13,8 @@
 #include "behavioral_pattern/observer.h"
 #include "structural_pattern/adapter.h"
 #include "structural_pattern/bridge.h"
+#include "behavioral_pattern/command.h"
+#include "behavioral_pattern/mediator.h"
 
 
 void test_singleton() {
@@ -126,6 +128,20 @@ void test_bridge() {
     w.DrawText();
 }
 
+void test_command() {
+    using namespace command;
+    auto r = new Receiver();
+    auto c = ConcreteCommand(r);
+    c.Execute();
+}
+
+void test_mediator() {
+    using namespace mediator;
+    auto m = ConcreteMediator();
+    auto c = m.GetConditon();
+    c->Changed();
+}
+
 int main() {
     test_singleton();
     test_observer();
@@ -137,5 +153,7 @@ int main() {
     test_prototype();
     test_adapter();
     test_bridge();
+    test_command();
+    test_mediator();
     return 0;
 }
