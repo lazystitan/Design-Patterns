@@ -20,14 +20,14 @@ public:
 };
 
 /*
- * ConcreteProductA、B、C 分别继承AbstractProduct实现接口
+ * Scroller、Button、Input 分别继承AbstractProduct实现接口。
  */
-class ConcreteProductA : public AbstractProduct{
+class ConcreteProductScroller : public AbstractProduct{
 private:
     AbstractProduct * _arr[ARR_SIZE];
     int _number;
 public:
-    explicit ConcreteProductA(int number) : _arr{nullptr} {
+    explicit ConcreteProductScroller(int number) : _arr{nullptr} {
         _number = number;
     }
 
@@ -36,33 +36,33 @@ public:
     }
 
     void action() override {
-        std::cout << "ConcreteProductA action" << std::endl;
+        std::cout << "ConcreteProductScroller action" << std::endl;
     }
 };
 
-class ConcreteProductB : public AbstractProduct {
+class ConcreteProductButton : public AbstractProduct {
 public:
     void action() override {
-        std::cout << "ConcreteProductB action" << std::endl;
+        std::cout << "ConcreteProductButton action" << std::endl;
     }
 };
 
-class ConcreteProductC : public AbstractProduct {
+class ConcreteProductInput : public AbstractProduct {
 public:
     void action() override {
-        std::cout << "ConcreteProductC action" << std::endl;
+        std::cout << "ConcreteProductInput action" << std::endl;
     }
 };
 
 /*
- * 假设一个新的product EnhancedProductA通过扩展ConcreteProductA实现了
+ * 假设一个新的EnhancedScroller通过扩展ConcreteProductA实现了
  */
-class EnhancedConcreteProductA : public ConcreteProductA {
+class EnhancedConcreteProductScroller : public ConcreteProductScroller {
 public:
-    explicit EnhancedConcreteProductA(int number) : ConcreteProductA(number) {}
+    explicit EnhancedConcreteProductScroller(int number) : ConcreteProductScroller(number) {}
 
     void action() override {
-        std::cout << "EnhancedConcreteProductA action" << std::endl;
+        std::cout << "EnhancedConcreteProductScroller action" << std::endl;
     }
 };
 
@@ -89,9 +89,9 @@ public:
 class AbstractFactory {
 public:
     virtual Products * MakeField() const = 0;
-    virtual ConcreteProductA * MakeConcreteProductA(int) const = 0;
-    virtual ConcreteProductB * MakeConcreteProductB() const = 0;
-    virtual ConcreteProductC * MakeConcreteProductC() const = 0;
+    virtual ConcreteProductScroller * MakeConcreteProductScroller(int) const = 0;
+    virtual ConcreteProductButton * MakeConcreteProductButton() const = 0;
+    virtual ConcreteProductInput * MakeConcreteProductInput() const = 0;
 };
 
 /*
@@ -102,14 +102,14 @@ public:
     Products * MakeField() const override {
         return new Products();
     }
-    ConcreteProductA * MakeConcreteProductA(int number) const override {
-        return new ConcreteProductA(number);
+    ConcreteProductScroller * MakeConcreteProductScroller(int number) const override {
+        return new ConcreteProductScroller(number);
     }
-    ConcreteProductB * MakeConcreteProductB() const override {
-        return new ConcreteProductB();
+    ConcreteProductButton * MakeConcreteProductButton() const override {
+        return new ConcreteProductButton();
     }
-    ConcreteProductC * MakeConcreteProductC() const override {
-        return new ConcreteProductC();
+    ConcreteProductInput * MakeConcreteProductInput() const override {
+        return new ConcreteProductInput();
     }
 };
 
@@ -121,40 +121,49 @@ public:
     Products * MakeField() const override {
         return new Products();
     }
-    ConcreteProductA * MakeConcreteProductA(int number) const override {
-        return new EnhancedConcreteProductA(number);
+    ConcreteProductScroller * MakeConcreteProductScroller(int number) const override {
+        return new EnhancedConcreteProductScroller(number);
     }
-    ConcreteProductB * MakeConcreteProductB() const override {
-        return new ConcreteProductB();
+    ConcreteProductButton * MakeConcreteProductButton() const override {
+        return new ConcreteProductButton();
     }
-    ConcreteProductC * MakeConcreteProductC() const override {
-        return new ConcreteProductC();
+    ConcreteProductInput * MakeConcreteProductInput() const override {
+        return new ConcreteProductInput();
     }
 };
 
 
 /*
- * 生成Products的类，包含一个创建Products的类。
- * 因为该成员函数的参数为一个工厂，根据要求可以创建不同的product，于此同时，它们之间的关系定义可以被复用。
+ * 生成Products的类，包含一个创建Products的方法。
+ * 因为该成员函数的参数为一个工厂虚类，可以传入继承了工厂虚类的不同工厂类，创建不同的（但有相同父类的）product。
  */
 class ProductsCreatorAF{
 public:
     static Products * CreateProducts(AbstractFactory * f) {
         auto products = f->MakeField();
-        auto pa = f->MakeConcreteProductA(1);
-        pa->set_arr(0, f->MakeConcreteProductB());
-        pa->set_arr(1, f->MakeConcreteProductC());
-        products->add(f->MakeConcreteProductA(0));
-        products->add(f->MakeConcreteProductB());
-        products->add(f->MakeConcreteProductC());
+        auto pa = f->MakeConcreteProductScroller(1);
+        pa->set_arr(0, f->MakeConcreteProductButton());
+        pa->set_arr(1, f->MakeConcreteProductInput());
+        products->add(f->MakeConcreteProductScroller(0));
+        products->add(f->MakeConcreteProductButton());
+        products->add(f->MakeConcreteProductInput());
         return products;
     }
 };
-
 
 /*
  * 使用时，首先获取需要的Factory，之后将其传入ProductsCreator创建Products。
  * 通过获取不同的Factory，创建由不同的Product构成的Products。
  */
+void test_abstract_factory() {
+    auto factory_a = ConcreteFactoryA();
+    auto products_1 = ProductsCreatorAF::CreateProducts(&factory_a);
+    products_1->action();
+
+    auto factory_b = ConcreteFactoryB();
+    auto products_2 = ProductsCreatorAF::CreateProducts(&factory_b);
+    products_2->action();
+}
+
 
 #endif //DESIGN_PATTERNS_ABSTRACT_FACTORY_H

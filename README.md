@@ -16,20 +16,31 @@
 目前进度：
     
 -   创建型模式基本实现完毕，有些细节仍需要加以改进，包括
-    1.  Factory模式
-    2.  Builder模式
-    3.  Singleton模式  
-    4.  AbstractFactory模式
-    5.  Prototype模式
--   构建型模式，待完成，已完成的有
-    1.  Decorator模式
-    2.  Proxy模式
-    3.  Bridge模式
-    4.  Adapter模式
--   行为模式，待完成，已完成的有
-    1.  Observer模式
-    2.  Mediator模式
-    3.  Command模式
+    1.  Factory
+    2.  Builder
+    3.  Singleton
+    4.  AbstractFactory
+    5.  Prototype
+-   构建型模式，待完成：
+    1. Adapter
+    2. Bridge
+    3. Composite (待实现)
+    4. Decorator
+    5. Faced (待实现)
+    6. Flyweight (待实现)
+    7. Proxy
+-   行为模式，待完成：
+    1. Chain of responsibility模式 (待实现)
+    2. Command
+    3. Interpreter (待实现)
+    4. Iterator
+    5. Mediator
+    6. Memento (待实现)
+    7. Observer
+    8. State (待实现)
+    9. Strategy (待实现)
+    10. Template method (待实现)
+    11. visitor (待实现)
 
 另外，为了增强可读性，计划为每个模式的代码添加适当的注释，目前已经完成的设计模式中，某些已经有了一定的注释。
 

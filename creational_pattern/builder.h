@@ -12,9 +12,9 @@
  *       |
  *       +-----+-------------------+----------------------+
  *             |                   |                      |
- *      ConcreteProductA    ConcreteProductB      ConcreteProductC
- *            |
- *  EnhancedConcreteProductA
+ *      ConcreteProductScroller    ConcreteProductButton      ConcreteProductInput
+ *             |
+ *  EnhancedConcreteProductScroller
  */
 
 /*
@@ -48,17 +48,17 @@ public:
     }
 
     void BuildProductA(int number) override {
-        this->_products->add(new ConcreteProductA(number));
+        this->_products->add(new ConcreteProductScroller(number));
     }
 
     void BuildProductB() override {
-        this->_products->add(new ConcreteProductB());
+        this->_products->add(new ConcreteProductButton());
     }
     void BuildProductC() override {
-        this->_products->add(new ConcreteProductC());
+        this->_products->add(new ConcreteProductInput());
     }
     void EnhancedBuildProductA(int number) override {
-        this->_products->add(new EnhancedConcreteProductA(number));
+        this->_products->add(new EnhancedConcreteProductScroller(number));
     }
     Products* GetProducts() override {
         return this->_products;
@@ -78,6 +78,14 @@ public:
     }
 };
 
+void test_builder() {
+    ConcreteBuilder cb;
+    Products *p;
+
+    ProductsCreatorB::CreateProducts(cb);
+    p = cb.GetProducts();
+    p->action();
+}
 
 
 #endif //DESIGN_PATTERNS_BUILDER_H

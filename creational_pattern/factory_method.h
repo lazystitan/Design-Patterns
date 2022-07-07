@@ -12,12 +12,12 @@
  *       |
  *       +-----+-------------------+----------------------+
  *             |                   |                      |
- *      ConcreteProductA    ConcreteProductB      ConcreteProductC
+ *      ConcreteProductScroller    ConcreteProductButton      ConcreteProductInput
  *            |
- *  EnhancedConcreteProductA
+ *  EnhancedConcreteProductScroller
  */
 
-//with out template
+//without template
 //use lay initialization
 
 class Creator {
@@ -37,12 +37,11 @@ public:
 class ConcreteCreator : public Creator {
 protected:
     AbstractProduct* CreateProduct() override {
-        return new ConcreteProductB();
+        return new ConcreteProductButton();
     }
 };
 
 //use template
-
 class CreatorT {
 public:
     virtual AbstractProduct* CreateProduct() = 0;
@@ -55,5 +54,19 @@ public:
         return new T();
     }
 };
+
+
+void test_factory_method() {
+    ConcreteProductButton *p;
+    ConcreteCreator c = ConcreteCreator();
+//    p = dynamic_cast<ConcreteProductButton*>(c.GetProduct());
+    p = (ConcreteProductButton*) c.GetProduct();
+    p->action();
+
+    auto ct = ConcreteTemplateCreator<ConcreteProductInput>();
+//    auto *pc = dynamic_cast<ConcreteProductInput*>(ct.CreateProduct());
+    auto *pc = (ConcreteProductInput*) ct.CreateProduct();
+    pc->action();
+}
 
 #endif //DESIGN_PATTERNS_FACTORY_METHOD_H
