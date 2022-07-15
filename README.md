@@ -30,7 +30,7 @@
     6. Flyweight (待实现)
     7. Proxy
 -   行为模式，待完成：
-    1. Chain of responsibility模式 (待实现)
+    1. Chain of responsibility (待实现)
     2. Command
     3. Interpreter (待实现)
     4. Iterator
@@ -132,6 +132,16 @@ OSI模型和TCP/IP模型似乎也符合Facade的理念。
 #### Factory
 
 [Dependency Injection vs Factory Pattern](https://stackoverflow.com/questions/557742/dependency-injection-vs-factory-pattern)
+
+#### 封装，抽象，解耦
+
+封装，抽象，解耦可以从两个角度思考其优点和目的：
+1. 个人角度
+   降低开发者个人的心智压力，可以更高效率的迭代。
+2. 工程角度
+   1. 降低开发者的能力要求，减少开发成本
+   2. 可以并行开发多个分离的子工程（包、类、组件），提高项目开发速度。
+   3. 尽力减少新需求导致的工程量，减少开发成本。
 
 ## 相关概念
 
