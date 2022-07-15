@@ -65,10 +65,14 @@
     3. Singleton
     4. AbstractFactory
     5. Prototype
+    
        ```rust
+       //rust代码
        let arc_ptr = Arc::new(1);
        let cloned = Arc::clone(arc_ptr);
+       let cloned = arc_ptr.clone();
        ```
+    
 -   构建型模式
     1. Adapter
     2. Bridge
@@ -80,20 +84,28 @@
 -   行为模式
     1. Chain of responsibility
     2. Command
+    
        - `runner->run([params])`
        - `executor->execute([params])`
-    3. Interpreter
-    4. Iterator
-    5. Mediator
+    
+    4. Interpreter
+    5. Iterator
+    6. Mediator
+    
        将类（对象）之间的交互集中，从类（对象）中抽离出。
-    6. Memento
-    7. Observer
+    
+    7. Memento
+    8. Observer
+    
        subject中保存observer的引用，subject变化时，调用每一个observer需要执行的方法。
-    8. State
+    
+    9. State
+    
        内部状态的不同会有不同的行为。
-    9. Strategy
-    10. Template method
-    11. visitor
+    
+    10. Strategy
+    11. Template method
+    12. visitor
 
 ### 零零散散
 
