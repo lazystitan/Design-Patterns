@@ -86,4 +86,11 @@ namespace mediator {
     };
 }
 
+void test_mediator() {
+    using namespace mediator;
+    auto m = ConcreteMediator();
+    auto c = m.GetConditon();
+    c->Changed();
+}
+
 #endif //DESIGN_PATTERNS_MEDIATOR_H

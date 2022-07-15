@@ -26,7 +26,7 @@
     2. Bridge
     3. Composite (待实现)
     4. Decorator
-    5. Faced (待实现)
+    5. Faced (待实现) —— 暂时不打算实现
     6. Flyweight (待实现)
     7. Proxy
 -   行为模式，待完成：
@@ -57,16 +57,69 @@
 
 ## 说明
 
+### 设计模式说明
+
+-   创建型模式
+    1. Factory
+    2. Builder
+    3. Singleton
+    4. AbstractFactory
+    5. Prototype
+       ```rust
+       let arc_ptr = Arc::new(1);
+       let cloned = Arc::clone(arc_ptr);
+       ```
+-   构建型模式
+    1. Adapter
+    2. Bridge
+    3. Composite
+    4. Decorator
+    5. Faced
+    6. Flyweight
+    7. Proxy
+-   行为模式
+    1. Chain of responsibility
+    2. Command
+       - `runner->run([params])`
+       - `executor->execute([params])`
+    3. Interpreter
+    4. Iterator
+    5. Mediator
+       将类（对象）之间的交互集中，从类（对象）中抽离出。
+    6. Memento
+    7. Observer
+       subject中保存observer的引用，subject变化时，调用每一个observer需要执行的方法。
+    8. State
+       内部状态的不同会有不同的行为。
+    9. Strategy
+    10. Template method
+    11. visitor
+
+### 零零散散
+
 此部分将作为笔记，零零散散的记录一些关于设计模式的细节。待整理完善。
+
+#### Proxy
 
 Proxy模式的使用情况有三种：
 1.  为了限制对被代理类的访问权限，使用合适的代理对访问进行限制。
 2.  为了减少资源占用，例如，一张图片在非屏幕区域内可以使用代理表示，而不载入内存。当进入屏幕后，由代理将其显示。
 3.  实现智能指针，具体可以参考C++标准库中的std::unique_ptr。
 
-AbstratFactory和Builder模式看起来有些类似，实际上他们的偏重点不同：
-1.  AbstratFactory偏重于从一个抽象工厂中获取不同的但属于同系列的对象。
-2.  Builder偏重于构建一个复杂的对象。
+#### AbstractFactory和Builder
+
+AbstractFactory和Builder模式看起来有些类似，实际上他们的偏重点不同：
+1. AbstratFactory偏重于从一个抽象工厂中获取不同的但属于同系列的对象。
+2. Builder偏重于构建一个复杂的对象。
+
+#### Facade
+
+现代编程系统的包（package, module）管理——尤其特指可见性（公开性）管理——是否也是一种Facade设计模式？
+OSI模型和TCP/IP模型似乎也符合Facade的理念。
+
+#### Factory
+
+[Dependency Injection vs Factory Pattern](https://stackoverflow.com/questions/557742/dependency-injection-vs-factory-pattern)
 
 ## 相关概念
 
