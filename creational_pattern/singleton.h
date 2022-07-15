@@ -29,6 +29,10 @@ public:
 
 Singleton* Singleton::_instance = nullptr;
 
+void test_singleton() {
+    Singleton *s1 = Singleton::Instance();
+    Singleton *s2 = Singleton::Instance();
+}
 
 //try using template implement singleton
 //TODO

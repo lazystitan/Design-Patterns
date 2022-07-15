@@ -20,6 +20,7 @@
 //without template
 //use lay initialization
 
+//工厂的接口
 class Creator {
 private:
     AbstractProduct *_product{};
@@ -34,6 +35,9 @@ public:
     }
 };
 
+//实体化的工厂
+//CreateProduct的方法越复杂，工厂提升的效率越高
+//讲一个对象复杂的创建过程（嵌套创建——单个复杂对象的创建用builder似乎更好）隐藏起来
 class ConcreteCreator : public Creator {
 protected:
     AbstractProduct* CreateProduct() override {

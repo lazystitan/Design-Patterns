@@ -37,7 +37,7 @@ namespace decorator {
 
     class Window {
     public:
-        void set_contents(VisualComponent *contents) {
+        static void set_contents(VisualComponent *contents) {
             std::cout << "window set contents" << std::endl;
             contents->draw();
             contents->resize();
@@ -51,7 +51,6 @@ namespace decorator {
         explicit Decorator(VisualComponent *component) {
             _component = component;
         }
-
 
         void draw() override {
             _component->draw();
@@ -120,6 +119,20 @@ namespace decorator {
             draw_shadow();
         }
     };
+}
+
+
+void test_decorator() {
+    using namespace decorator;
+    std::string str = "12345";
+    auto *window = new Window;
+    auto *text_view = new TextView(std::move(str));
+    auto *vc = new BorderDecorator(new ScrollDecorator(new DropShadowDecorator(text_view, 1), 3, 1), 10);
+    window->set_contents(vc);
+    delete window;
+    delete  text_view;
+    delete vc;
+
 }
 
 #endif //DESIGN_PATTERNS_DECORATOR_H

@@ -10,7 +10,7 @@
 #include <iostream>
 #include <vector>
 
-
+//TODO 之前理解有问题，待改正
 /*
  * 通过抽象类AbstractProduct为所有的product定义接口
  */

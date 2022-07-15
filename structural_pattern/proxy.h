@@ -8,11 +8,10 @@
 #include <iostream>
 
 /*
+ * 应用：智能指针、占位、限制访问性
  * virtual proxy for saving resource
  * also have protection proxy and smart reference
  */
-
-
 class Image {
 private:
     int id;
@@ -54,5 +53,11 @@ public:
         return *load_image();
     }
 };
+
+
+void test_proxy() {
+    ImagePtr imagePtr = ImagePtr(12345);
+    imagePtr->draw();
+}
 
 #endif //DESIGN_PATTERNS_PROXY_H

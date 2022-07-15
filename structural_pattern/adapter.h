@@ -9,12 +9,14 @@
 
 namespace ClassAdapter {
 
+    //目标（虚）类（接口）
     class Target {
     public:
         virtual void setData(int data1, int data2) = 0;
         virtual int getSumData(int data) = 0;
     };
 
+    //待转换类
     class Adaptee {
     private:
         int _data = 2;
@@ -30,6 +32,7 @@ namespace ClassAdapter {
         }
     };
 
+    //适配器类
     class Adapter : public Target, private Adaptee {
     public:
         void setData(int data1, int data2) override {
@@ -43,6 +46,7 @@ namespace ClassAdapter {
 
 }
 
+//类似于类适配去，却别在于要给Adapter传入一个待转换对象
 namespace ObjectAdapter {
 
     class Target {
@@ -81,6 +85,24 @@ namespace ObjectAdapter {
         }
     };
 
+}
+
+void test_adapter() {
+    {
+        using namespace ClassAdapter;
+        Adapter a;
+        a.setData(15,2);
+        int rs = a.getSumData(3);
+        std::cout << rs << std::endl;
+    }
+    {
+        using namespace ObjectAdapter;
+        Adaptee a;
+        Adapter at = Adapter(&a);
+        at.setData(15,37);
+        int rs = at.getSumData(3);
+        std::cout << rs << std::endl;
+    }
 }
 
 #endif //DESIGN_PATTERNS_ADAPTER_H
